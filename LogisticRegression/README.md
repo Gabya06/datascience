@@ -288,7 +288,7 @@ pairwise correlations between different variables.
 
 [!Initial_correlationMatrix](https://github.com/Gabya06/datascience/blob/master/LogisticRegression/assets/Initial_correlationMatrix.png)
 
-[[!Initial_correlationMatrix](https://github.com/Gabya06/datascience/blob/master/LogisticRegression/assets/Initial_correlationMatrix.png)](https://github.com/Gabya06/datascience/blob/master/LogisticRegression/assets/Initial_correlationMatrix.png)
+[Initial_correlationMatrix](https://github.com/Gabya06/datascience/LogisticRegression/assets/Initial_correlationMatrix.png)
 
 
 Using the training set as input with all the features doesn't add much value, so
