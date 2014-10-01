@@ -286,7 +286,7 @@ pairwise correlations between different variables.
     for ax in axeslist.flatten():
         ax.grid(True)
 
-[![Initial_correlationMatrix](http://Gabya06.github.io/datascience/assets/Initial_correlationMatrix.png)](http://Gabya06.github.io/datascience/assets/Initial_correlationMatrix.png)
+[![Initial_correlationMatrix](http://Gabya06.github.com/datascience/assets/Initial_correlationMatrix.png)](http://Gabya06.github.com/datascience/assets/Initial_correlationMatrix.png)
 
 [![top2names](http://Gabya06.github.io/edav/assets/gaby_assets/top2names.png)](http://Gabya06.github.io/edav/assets/gaby_assets/top2names.png)
 
@@ -320,9 +320,7 @@ looks like there are more women below 130 lbs.
         ax.set_ylabel(y_labels, rotation = 0, labelpad=20)
 
 
-![png](LogisticRegression-LowBirthWeight-final_files/LogisticRegression-LowBirthWeight-final_15_0.png)
-
-
+[![modifiedMatrix.png](http://Gabya06.github.io/datascience/gaby_assets/modifiedMatrix.png)](http://Gabya06.github.io/datascience/gaby_assets/modifiedMatrix.png)
 
     # create 2 dataframes to check that colored correctly
     red = training.loc[training.low ==0]
