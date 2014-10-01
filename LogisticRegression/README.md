@@ -286,7 +286,7 @@ pairwise correlations between different variables.
     for ax in axeslist.flatten():
         ax.grid(True)
 
-[![Initial_correlationMatrix](http://github.com/Gabya06/datascience/master/LogisticRegression/assets/Initial_correlationMatrix.png)]((http://github.com/Gabya06/datascience/master/LogisticRegression/assets/Initial_correlationMatrix.png))
+[![Initial_correlationMatrix](http://Gabya06.github.io/datascience/LogisticRegression/assets/Initial_correlationMatrix.png)]((http://Gabya06.github.io/datascience/LogisticRegression/assets/Initial_correlationMatrix.png))
 
 [![top2names](http://Gabya06.github.io/edav/assets/gaby_assets/top2names.png)](http://Gabya06.github.io/edav/assets/gaby_assets/top2names.png)
 
