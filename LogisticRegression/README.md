@@ -286,7 +286,7 @@ pairwise correlations between different variables.
     for ax in axeslist.flatten():
         ax.grid(True)
 
-[![Initial_correlationMatrix](http://Gabya06.github.io/datascience/LogisticRegression/Initial_correlationMatrix.png)](http://Gabya06.github.io/datascience/LogisticRegression/Initial_correlationMatrix.png)
+[![Initial_correlationMatrix](https://github.com/Gabya06/datascience/LogisticRegression/assets/Initial_correlationMatrix.png)](https://github.com/Gabya06/datascience/LogisticRegression/assets/Initial_correlationMatrix.png)
 
 
 Using the training set as input with all the features doesn't add much value, so
