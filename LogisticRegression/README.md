@@ -320,7 +320,7 @@ looks like there are more women below 130 lbs.
         ax.set_ylabel(y_labels, rotation = 0, labelpad=20)
 
 
-[![modifiedMatrix.png](http://Gabya06.github.io/datascience/gaby_assets/modifiedMatrix.png)](http://Gabya06.github.io/datascience/gaby_assets/modifiedMatrix.png)
+[![modifiedMatrix.png](http://Gabya06.github.io/datascience/assets/modifiedMatrix.png)](http://Gabya06.github.io/datascience/assets/modifiedMatrix.png)
 
     # create 2 dataframes to check that colored correctly
     red = training.loc[training.low ==0]
