@@ -320,7 +320,14 @@ looks like there are more women below 130 lbs.
         ax.set_ylabel(y_labels, rotation = 0, labelpad=20)
 
 
-[![initial_corrmatrix](http://Gabya06.github.io/datascience/LogisticRegression/gaby_assets/modifiedMatrix.png)](http://Gabya06.github.io/datascience/LogisticRegression/gaby_assets/initial_corrmatrix.png)
+[!](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/initial_corrmatrix.png)
+
+
+
+![](https://github.com/gabya06/datascience/blob/master/assets/initial_corrmatrix.png)
+
+
+[!](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/initial_corrmatrix.png)
 
 [![top2Maria](http://Gabya06.github.io/datascience/MariaDecline/gaby_assets/top2Maria.png)](http://Gabya06.github.io/datascience/MariaDecline/gaby_assets/top2Maria.png)
 
