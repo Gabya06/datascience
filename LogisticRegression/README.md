@@ -324,6 +324,9 @@ looks like there are more women below 130 lbs.
 
 ![](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/modifiedMatrix.png)
 
+[![modifiedMatrix](http://Gabya06.github.io/datascience/LogisticRegression/gaby_assets/modifiedMatrix.png)](http://Gabya06.github.io/datascience/LogisticRegression/gaby_assets/modifiedMatrix.png)
+
+
 [![top2Maria](http://Gabya06.github.io/datascience/MariaDecline/gaby_assets/top2Maria.png)](http://Gabya06.github.io/datascience/MariaDecline/gaby_assets/top2Maria.png)
 
     # create 2 dataframes to check that colored correctly
