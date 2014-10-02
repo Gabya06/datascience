@@ -320,7 +320,7 @@ looks like there are more women below 130 lbs.
         ax.set_ylabel(y_labels, rotation = 0, labelpad=20)
 
 
-[![modifiedMatrix](http://gabya06.github.io/datascience/assets/modifiedMatrix.png)](http://gabya06.github.io/datascience/assets/modifiedMatrix.png)
+[![modifiedMatrix](http://Gabya06.github.io/datascience/assets/modifiedMatrix.png)](http://Gabya06.github.io/datascience/assets/modifiedMatrix.png)
 
 [![topchoco_lines](http://Gabya06.github.io/edav/assets/gaby_assets/topchoco_lines.png)](http://Gabya06.github.io/edav/assets/gaby_assets/topchoco_lines.png)
 
