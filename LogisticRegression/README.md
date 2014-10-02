@@ -286,10 +286,7 @@ pairwise correlations between different variables.
     for ax in axeslist.flatten():
         ax.grid(True)
 
-[![Initial_correlationMatrix](http://Gabya06.github.com/datascience/assets/Initial_correlationMatrix.png)](http://Gabya06.github.com/datascience/assets/Initial_correlationMatrix.png)
-
-[![top2names](http://Gabya06.github.io/edav/assets/gaby_assets/top2names.png)](http://Gabya06.github.io/edav/assets/gaby_assets/top2names.png)
-
+![](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/initial_corrmatrix.png)
 
 Using the training set as input with all the features doesn't add much value, so
 I reduced the input to another version of the training set with only age, lwt
@@ -320,14 +317,9 @@ looks like there are more women below 130 lbs.
         ax.set_ylabel(y_labels, rotation = 0, labelpad=20)
 
 
-![](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/initial_corrmatrix.png)
 
 ![](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/modifiedMatrix.png)
 
-[![modifiedMatrix](http://Gabya06.github.io/datascience/LogisticRegression/gaby_assets/modifiedMatrix.png)](http://Gabya06.github.io/datascience/LogisticRegression/gaby_assets/modifiedMatrix.png)
-
-
-[![top2Maria](http://Gabya06.github.io/datascience/MariaDecline/gaby_assets/top2Maria.png)](http://Gabya06.github.io/datascience/MariaDecline/gaby_assets/top2Maria.png)
 
     # create 2 dataframes to check that colored correctly
     red = training.loc[training.low ==0]
