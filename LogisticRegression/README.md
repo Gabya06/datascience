@@ -322,8 +322,7 @@ looks like there are more women below 130 lbs.
 
 [![initial_corrmatrix](https://raw.github.com/Gabya06/datascience/assets/modifiedMatrix.png)](https://raw.github.com/Gabya06/datascience/assets/initial_corrmatrix.png)
 
-[![topchoco_lines](http://Gabya06.github.io/edav/assets/gaby_assets/topchoco_lines.png)](http://Gabya06.github.io/edav/assets/gaby_assets/topchoco_lines.png)
-
+[![top2Maria](http://Gabya06.github.io/datascience/MariaDecline/gaby_assets/top2Maria.png)](http://Gabya06.github.io/datascience/MariaDecline/gaby_assets/top2Maria.png)
 
     # create 2 dataframes to check that colored correctly
     red = training.loc[training.low ==0]
