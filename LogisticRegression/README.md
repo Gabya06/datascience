@@ -291,10 +291,10 @@ I reduced the input to another version of the training set with only age, lwt
 the 100-200 lbs range with mixed outcomes of baby birth weights, and there seem
 to be a few outliers where weight is over 200 lbs.
 
-*LWT and BWT* (birth weight in grams - where bwt $<2500g$ is considered low):
+*LWT and BWT* (birth weight in grams - where bwt <2500g  is considered low):
 Since the data set contains fewer low birth weight samples it seems like there
 are more normal babies born to mothers where the weight in lbs at last menstrual
-period ranges from high to low. If we look at birth weight $<2500g$ in blue, it
+period ranges from high to low. If we look at birth weight <2500g in blue, it
 looks like there are more women below 130 lbs.
 
 
@@ -322,8 +322,8 @@ features in the training data.
 #### Mother's weight at last period and birth weight of baby
 The first scatter plot shows mother's weight at last period and birth weight of
 baby: The red points represent normal weight babies and the blue points
-correspond to low birth weight babies ($<2500g$). There seems to be a cluster of
-low birth weight babies where the weight of the mother is below $125 lbs$ but
+correspond to low birth weight babies (<2500g). There seems to be a cluster of
+low birth weight babies where the weight of the mother is below 125lbs but
 there is no clear trend.
 
 
@@ -379,7 +379,7 @@ and half normal weight.
 #### Race, age and birth weight
 While noticing that there are fewer samples of black women and more white women,
 I wanted to drill in and see the actual percentages in the data and represent
-this in a bar graph. In doing so, I noted that less than $15\%$ of the data
+this in a bar graph. In doing so, I noted that less than 15% of the data
 contained black women.
 
 
@@ -487,9 +487,9 @@ contained black women.
 ![](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/raceBar.png)
 
 When plotting each race separately, the minimum birth weight is the lowest for
-'other' race women seemingly close to $700g$ while the maximum is close to
-$5000g$ for white women. Also, the range of birth weight for black women is
-between $1928g$ and $3860g$.
+'other' race women seemingly close to 700g while the maximum is close to
+5000g for white women. Also, the range of birth weight for black women is
+between 1928g and 3860g.
 
 
     # plot lines of the diff birth weights by race 
@@ -521,8 +521,8 @@ smoke and also more women who smoke and have low weight babies.
     # plot points from training set of smoke & bwt
     fig2 = pyplot.figure()
     ax = fig2.add_subplot(1,1,1)
-    ax.scatter(x_smokebwt.ix[y==0, 0], x_smokebwt.ix[y==0, 1], c= 'blue', edgecolors = 'blue', label = 'birth weight $>2500g$', s= 45) # smoke 
-    ax.scatter(x_smokebwt.ix[y==1, 0], x_smokebwt.ix[y==1, 1], c= 'red', edgecolors = 'red', label ='birth weight $<2500g$', s= 45) # bwt
+    ax.scatter(x_smokebwt.ix[y==0, 0], x_smokebwt.ix[y==0, 1], c= 'blue', edgecolors = 'blue', label = 'birth weight >2500g', s= 45) # smoke 
+    ax.scatter(x_smokebwt.ix[y==1, 0], x_smokebwt.ix[y==1, 1], c= 'red', edgecolors = 'red', label ='birth weight <2500g', s= 45) # bwt
     #pyplot.xlim(x_agesmoke[['age']].min() - 2  , x_agesmoke[['age']].max() + 2 ) # set limits of x axis (age)
     #pyplot.ylim(x_agesmoke[['smoke']].min() - 2, x_agesmoke[['smoke']].max() + 2 ) # set limits of y axis (race)
     pyplot.xlabel(x_smokebwt.columns[0])
@@ -664,13 +664,13 @@ narrowest distribution of all.
 
 ### Seaborn Package KDE plot function
 I also explored the seaborn package and used the KDE plot function to look at
-the density estimate of race and birth weight ($1^{st}$) as well as age and
-birth weight ($2^{nd}$).
+the density estimate of race and birth weight (1st) as well as age and
+birth weight (2nd).
 
-The $1^{st}$ kde plot shows that the lowest points come from the white and other
+The 1st kde plot shows that the lowest points come from the white and other
 race women samples, and that the birth weight varies less for black women.
 
-The $2^{nd}$ plot shows that birth weight $<1000g$ comes from women around 27-30
+The 2nd plot shows that birth weight <1000g comes from women around 27-30
 years old, and that there arent any low births for women at the maximum age in
 the training set. The maximum age for women is 45 and there are no low birth
 weight babies.
@@ -710,8 +710,8 @@ weight babies.
 
 
 Also, when looking at the densities of all races, it becomes even more apparent
-that white women tend to have averages around $3000g$ whereas black and other
-women have average baby weights below $3000g$.
+that white women tend to have averages around 3000g whereas black and other
+women have average baby weights below 3000g.
 
 
     # plot distribution of each race on top of one another
@@ -784,20 +784,19 @@ of each variable with a line for the mean of each variable in red.
 
 ![](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/joint.png)
 
-###Logistic regression using $L_1$ penalty - yields spare coefficients.
+###Logistic regression using L1 penalty - yields spare coefficients.
 
-Here we explore the different results and predictions in the training and test
+Here I explored the different results and predictions in the training and test
 set.
-
-The coefficient plot shows that when the regularization penalty $C$ is set to
-$1.0$ (default), the largest coefficients correspond to smoke (yes/no), race
+The coefficient plot shows that when the regularization penalty C is set to
+1.0 (default), the largest coefficients correspond to smoke (yes/no), race
 (black, white or other.) and ptl (history of premature labor).
 
-However, when we decrease $C$ to $0.01$, the largest coefficient remaining
+However, when we decrease C to 0.01, the largest coefficient remaining
 corresponds to lwt and the others are nearly 0.
 
 
-    #L1 model for Logistic Regression - use L1 Penalty for sparse coefficients
+    *L1 model for Logistic Regression*
     l1 = linear_model.LogisticRegression(penalty ='l1', C=1.0, fit_intercept = True) 
     # fit l1 model to data
     l1.fit(x,y)
@@ -816,16 +815,14 @@ corresponds to lwt and the others are nearly 0.
     print('Accuracy score is: ', model_accuracy, 'Need to make sure this approach is correct***')
     print('Number of incorrect predictions: ', incorrect_class)
 
-    --------Results on Training set:--------
+    --------Results on Training set:-----------------
     
     Coefficients with L1 penalty:
-     [[-0.00948316  0.01845867  0.5688261   1.00486737  0.53569598  0.          0.
-       0.         -0.00574859]]
+     [[-0.00948316  0.01845867  0.5688261   1.00486737  0.53569598  0. 0. 0. -0.00574859]]
     
     Model l1  score is:  0.959677419355
     Accuracy score is:  0.959677419355 Need to make sure this approach is correct***
     Number of incorrect predictions:  5.0
-
 
 
     # get coefficients from L1 model
@@ -838,17 +835,7 @@ corresponds to lwt and the others are nearly 0.
     pyplot.axhline(0, color='k', linestyle='--')
     pyplot.title('Coefficient plot - L1 model - C='+ str(l1.C))
 
-
-
-
-    <matplotlib.text.Text at 0x1096d2950>
-
-
-
-
-![png](LogisticRegression-LowBirthWeight-final_files/LogisticRegression-LowBirthWeight-final_53_1.png)
-
-
+![](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/coef_L1.png)
 
     # print L1 coefficients
     print('C =',l1.C, ' - L1 coefficients:\n')
@@ -857,16 +844,15 @@ corresponds to lwt and the others are nearly 0.
 
     C = 1.0  - L1 coefficients:
     
-    age:	-0.0094832
-    lwt:	0.0184587
-    race:	0.5688261
-    smoke:	1.0048674
-    ptl:	0.5356960
-    ht:	0.0000000
-    ui:	0.0000000
-    ftv:	0.0000000
-    bwt:	-0.0057486
-
+    age:	  -0.0094832
+    lwt:	   0.0184587
+    race:	   0.5688261
+    smoke:	 1.0048674
+    ptl:	   0.5356960
+    ht:	     0.0000000
+    ui:	     0.0000000
+    ftv:	   0.0000000
+    bwt:	  -0.0057486
 
 
     # test set used here
@@ -886,13 +872,11 @@ corresponds to lwt and the others are nearly 0.
     print('Accuracy score is: ', test_accuracy)
     print('Number of incorrect predictions: ', test_incorrect_class)
 
-    -------- L1 Results on Test set:--------
+    -------- L1 Results on Test set:-----------------
     
     Model l1  score is:  0.984615384615
-    Accuracy score is:  0.984615384615
+    Accuracy score is:   0.984615384615
     Number of incorrect predictions:  1.0
-
-
 
     result = l1.predict(test)
     print('Predictions on test:')
@@ -904,20 +888,22 @@ corresponds to lwt and the others are nearly 0.
      1 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 1 0]
 
 
-Changing the regularization term $C = 0.01$: this yields coefficients very close
+Changing the regularization term C = 0.01: this yields coefficients very close
 to 0.
 
-
-    #L1_v2: model for Logistic Regression - use L1 Penalty for sparse coefficients - C = .01 
+    *L1: model for Logistic Regression  C = 0.01* 
     l1_v2 = linear_model.LogisticRegression(penalty ='l1', C=.010, fit_intercept = True) 
     # fit l1_v2 model to data
     l1_v2.fit(x,y)
+    
     # print L1_v2 coefficients
     print('C =',l1_v2.C, ' - L1 coefficients:')
     for name, value in zip(x.columns, l1_v2.coef_[0]):
         print('{0}:\t{1:.7f}'.format(name, value))
+    
     # get coefficients from L1_v2 model
     coefs_v2 = l1_v2.coef_[0]
+    
     # plot coefficients of L1 model and 
     fig1 = pyplot.figure(facecolor='cyan')
     pyplot.plot(coefs_v2, 'ro', markerfacecolor='yellow', markersize=14, markeredgecolor = 'r')
@@ -928,41 +914,33 @@ to 0.
     pyplot.title('Coefficient plot - L1 model - C='+ str(l1_v2.C))
 
     C = 0.01  - L1 coefficients:
-    age:	0.0000000
-    lwt:	0.0310291
-    race:	0.0000000
+    age:	  0.0000000
+    lwt:	  0.0310291
+    race:	  0.0000000
     smoke:	0.0000000
-    ptl:	0.0000000
-    ht:	0.0000000
-    ui:	0.0000000
-    ftv:	0.0000000
-    bwt:	-0.0018253
+    ptl:	  0.0000000
+    ht:	    0.0000000
+    ui:	    0.0000000
+    ftv:	  0.0000000
+    bwt:	 -0.0018253
 
 
+![](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/coef_L1_2.png)
 
 
-
-    <matplotlib.text.Text at 0x10a7a9250>
-
-
-
-
-![png](LogisticRegression-LowBirthWeight-final_files/LogisticRegression-LowBirthWeight-final_59_2.png)
-
-
-###Logistic Regression using $L_2$ penalty
-When looking at the $L_2$ penalty with $C=1.0$, the model performs a bit worse
+###Logistic Regression using L2 penalty
+When looking at the L2 penalty with C=1.0, the model performs a bit worse
 on the test set, and the coefficients are not as close to 0.
 
 From the coefficient plot, smoke appears to be important but so is race. Both
-coefficients are penalized the most since $L_2$ penalty uses a square penalty
-whereas $L_1$ does not.
+coefficients are penalized the most since L2 penalty uses a square penalty
+whereas L1 does not.
 
-When setting $C = 1000$ the coefficient corresponding to history of premature
+When setting C = 1000 the coefficient corresponding to history of premature
 labor (ptl) is highest.
 
 
-    #L2 model for Logistic Regression - use L2 Penalty
+    *L2 model for Logistic Regression*
     l2 = linear_model.LogisticRegression(penalty ='l2', C=1.0, fit_intercept = True) 
     # fit l2 model to data
     l2.fit(x,y)
@@ -978,7 +956,7 @@ labor (ptl) is highest.
     print('Model', l2.penalty, ' score is: ',l2.score(test,y_test))
     print('Number of incorrect predictions: ', test_incorrect_class_l2)
 
-    -------- L2 Results on Test set:--------
+    -------- L2 Results on Test set:-----------------
     
     Model l2  score is:  0.907692307692
     Number of incorrect predictions:  6.0
@@ -989,8 +967,10 @@ labor (ptl) is highest.
     print('C =',l2.C, ' - L2 coefficients:')
     for name, value in zip(x.columns, l2.coef_[0]):
         print('{0}:\t{1:.7f}'.format(name, value))
+    
     # get coefficients from L2 model
     coefs_l2 = l2.coef_[0]
+    
     # plot coefficients of L2 model and 
     fig2 = pyplot.figure(facecolor='yellow')
     pyplot.plot(coefs_l2, 'ro', markerfacecolor='green', markersize=14, markeredgecolor = 'r')
@@ -1001,32 +981,21 @@ labor (ptl) is highest.
     pyplot.title('Coefficient plot - L2 model - C='+ str(l2.C))
 
     C = 1.0  - L2 coefficients:
-    age:	0.0478285
-    lwt:	0.0289740
-    race:	1.0237721
+    age:	  0.0478285
+    lwt:	  0.0289740
+    race:	  1.0237721
     smoke:	1.4929413
-    ptl:	0.4912715
-    ht:	0.3326577
-    ui:	0.1681403
-    ftv:	-0.0059294
-    bwt:	-0.0039292
+    ptl:	  0.4912715
+    ht:	    0.3326577
+    ui:	    0.1681403
+    ftv:	 -0.0059294
+    bwt:	 -0.0039292
 
+![](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/coef_L2.png)
 
+Changing C = 1000 for L2 penalty:
 
-
-
-    <matplotlib.text.Text at 0x10954d410>
-
-
-
-
-![png](LogisticRegression-LowBirthWeight-final_files/LogisticRegression-LowBirthWeight-final_63_2.png)
-
-
-Changing $C = 1000$ for $L_2$ penalty:
-
-
-    #L2_v2: model for Logistic Regression - use L2 Penalty - C = 1000
+    *L2: model for Logistic Regression - C = 1000*
     l2_v2 = linear_model.LogisticRegression(penalty ='l2', C=1000) 
     # fit l1_v2 model to data
     l2_v2.fit(x,y)
@@ -1034,8 +1003,10 @@ Changing $C = 1000$ for $L_2$ penalty:
     print('C =',l2_v2.C, ' - L2 coefficients:')
     for name, value in zip(x.columns, l2_v2.coef_[0]):
         print('{0}:\t{1:.7f}'.format(name, value))
+    
     # get coefficients from L2_v2 model
     coefs_l2_v2 = l2_v2.coef_[0]
+    
     # plot coefficients of L2 model and 
     fig3 = pyplot.figure(facecolor='magenta')
     pyplot.plot(coefs_l2_v2, 'ro', markerfacecolor='blue', markersize=14)
@@ -1047,35 +1018,26 @@ Changing $C = 1000$ for $L_2$ penalty:
     pyplot.title('Coefficient plot - L2 model - C='+ str(l2_v2.C))
 
     C = 1000  - L2 coefficients:
-    age:	-0.0620169
-    lwt:	0.0294959
-    race:	1.1888958
+    age:	 -0.0620169
+    lwt:	  0.0294959
+    race:	  1.1888958
     smoke:	1.8584039
-    ptl:	2.0503467
-    ht:	1.7983696
-    ui:	-0.9007075
-    ftv:	-0.0505346
-    bwt:	-0.0071715
+    ptl:	  2.0503467
+    ht:	    1.7983696
+    ui:	   -0.9007075
+    ftv:	 -0.0505346
+    bwt:	 -0.0071715
 
 
 
-
-
-    <matplotlib.text.Text at 0x1098fb990>
-
-
-
-
-![png](LogisticRegression-LowBirthWeight-final_files/LogisticRegression-LowBirthWeight-final_65_2.png)
-
+![](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/coef_L2_2.png)
 
 ## Predictions
 Here I do a simple prediction on a subset of the entire set. I look at the
 predictions on the test set based on the features
 smoke and race.
-Using these 2 features and the L2 penatly, the model predicts at about $70\%$
+Using these 2 features and the L2 penatly, the model predicts at about 70%
 accuracy, making 12 mistakes on the test set.
-
 
     # create subset with data only for age and race to train
     x_race_data = training.loc[:,['smoke','race','low']]
@@ -1087,7 +1049,7 @@ accuracy, making 12 mistakes on the test set.
     x_race_test_label = np.ravel(label_test)
 
 
-    #L2 model for Logistic Regression - for subset with only 2 features: race and smoke
+    *L2 model for Logistic Regression - for subset with only 2 features: race and smoke*
     logRegmodel = linear_model.LogisticRegression() 
     # fit l1 model to data
     logRegmodel.fit(x_race_train, x_race_train_labels)
@@ -1112,7 +1074,7 @@ accuracy, making 12 mistakes on the test set.
 ### PCA
 Next, I wanted to learn about Principal Component Analysis (PCA) to project the
 data into less dimensions. Performing PCA on a dataset returns principal
-components of the data (these are eigenvectors) such that the $1^{st}$ component
+components of the data (these are eigenvectors) such that the 1st component
 has the largest possible variance which accounts for most of the variability in
 the dataset. Each principal component is associated with a value (eigen value)
 which corresponds to the amount of variance explained by that component.
@@ -1124,7 +1086,6 @@ variances_, the highest value is the first one corresponding to the largest
 amount of variability in the dataset.
 
 
-    # http://nbviewer.ipython.org/github/anfibil/cse40647.sp14/blob/master/8%20-%20Dimensionality%20Reduction.ipynb
     from sklearn.decomposition import PCA
     from sklearn import decomposition
     pca = decomposition.PCA()
@@ -1132,20 +1093,21 @@ amount of variability in the dataset.
     x_PCA = pca.fit_transform(x)
     # get percentage of variance for each of the components to see which features have highest variance
     print("Variance in data explained by each principal component:\n", pca.explained_variance_)
-    print()
+    
     print("Percentage of variance for each component before chosing k features to reduce to:\n",pca.explained_variance_ratio_)
-    print()
-    print("Since k is not set, the sum of variance of all components should be 0:", sum(pca.explained_variance_ratio_))
+    
+    print("Since k is not set, the sum of variance of all components should be 0:", 
+    sum(pca.explained_variance_ratio_))
 
     Variance in data explained by each principal component:
      [  5.55318219e+05   8.43498408e+02   2.89969495e+01   1.00653828e+00
-       7.96284427e-01   2.29567363e-01   1.36490978e-01   9.18962870e-02
-       5.03949663e-02]
+        7.96284427e-01   2.29567363e-01   1.36490978e-01   9.18962870e-02
+        5.03949663e-02]
     
     Percentage of variance for each component before chosing k features to reduce to:
      [  9.98427153e-01   1.51655697e-03   5.21346873e-05   1.80969238e-06
-       1.43166921e-06   4.12747647e-07   2.45402175e-07   1.65223731e-07
-       9.06069728e-08]
+        1.43166921e-06   4.12747647e-07   2.45402175e-07   1.65223731e-07
+        9.06069728e-08]
     
     Since k is not set, the sum of variance of all components should be 0: 1.0
 
@@ -1173,17 +1135,16 @@ reducing to 2 dimensions and plotted the explained variance ratios.
     ax.set_xlabel('N components')
     pyplot.title('Explained variance for each component');
 
-
-![png](LogisticRegression-LowBirthWeight-final_files/LogisticRegression-LowBirthWeight-final_73_0.png)
-
+![](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/pca_var.png)
 
 
-    # pca with 5 components
+    *PCA with 5 components*
     N=5
     pca = decomposition.PCA(n_components=N)
     x_PCA = pca.fit_transform(x)
-    print(pd.DataFrame(pca.components_.T, columns=['PC-1', 'PC-2', 'PC-3', 'PC-4', 'PC-5'], index=x.columns))
-    print()
+    print(pd.DataFrame(pca.components_.T, columns=['PC-1', 'PC-2', 'PC-3', 'PC-4', 'PC-5'], 
+    index=x.columns))
+    
     print(pca.explained_variance_ratio_)
 
                PC-1      PC-2      PC-3      PC-4      PC-5
@@ -1197,10 +1158,7 @@ reducing to 2 dimensions and plotted the explained variance ratios.
     ftv   -0.000054  0.000098  0.031229  0.910486 -0.407519
     bwt   -0.999965  0.008321 -0.000913 -0.000094 -0.000115
     
-    [  9.98427153e-01   1.51655697e-03   5.21346873e-05   1.80969238e-06
-       1.43166921e-06]
-
-
+    [ 9.98427153e-01  1.51655697e-03 5.21346873e-05 1.80969238e-06  1.43166921e-06]
 
     # plot the percentage of each variance for each component
     N = 5
@@ -1208,17 +1166,17 @@ reducing to 2 dimensions and plotted the explained variance ratios.
     vals = pca.explained_variance_ratio_
     y_breaks = np.arange(0.00,1.25, step=0.25)
     x_plot_labels = ['1','2','3','4','5']
+    
     # plot of the 5 pca component percentages
     fig_pca5 = pyplot.figure(figsize=(6,4))
     ax = fig_pca5.add_subplot(1,1,1)
     ax.bar(ind, pca.explained_variance_ratio_,
            color = ['crimson','DeepPink','Coral','Gold','PeachPuff'])
-           #color = ['Crimson','DeepPink','Coral','Gold','PeachPuff','Lavender','Aqua','DeepSkyBlue','DarkBlue','Maroon'])
     ax.annotate(r"%.2f%%" % (vals[0]*100), (ind[0]+0.5, vals[0]), va="bottom", ha="center", fontsize=12)
-    ax.annotate(r"%.2f%%" % (vals[1]*100), (ind[1]+ 0.5, vals[1]), va="bottom", ha="center", fontsize=12)
-    ax.annotate(r"%.2f%%" % (vals[2]*100), (ind[2]+ 0.5, vals[2]), va="bottom", ha="center", fontsize=12)
-    ax.annotate(r"%.2f%%" % (vals[3]*100), (ind[3]+ 0.5, vals[3]), va="bottom", ha="center", fontsize=12)
-    ax.annotate(r"%.2f%%" % (vals[4]*100), (ind[4]+ 0.5, vals[4]), va="bottom", ha="center", fontsize=12)
+    ax.annotate(r"%.2f%%" % (vals[1]*100), (ind[1]+ 0.5, vals[1]),va="bottom", ha="center", fontsize=12)
+    ax.annotate(r"%.2f%%" % (vals[2]*100), (ind[2]+ 0.5, vals[2]),va="bottom", ha="center", fontsize=12)
+    ax.annotate(r"%.2f%%" % (vals[3]*100), (ind[3]+ 0.5, vals[3]),va="bottom", ha="center", fontsize=12)
+    ax.annotate(r"%.2f%%" % (vals[4]*100), (ind[4]+ 0.5, vals[4]),va="bottom", ha="center", fontsize=12)
     ax.set_xticklabels(labels = x_plot_labels, fontsize = 12)
     ax.set_ylim(0, 1.0)
     ax.set_xlim(-.5, 5.0)
@@ -1229,12 +1187,9 @@ reducing to 2 dimensions and plotted the explained variance ratios.
     ax.set_xlabel("Principal Component", fontsize=12)
     ax.set_ylabel("Variance \nExplained (%)", fontsize=12, rotation = 0, labelpad=50);
 
+![](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/pca_var_2.png)
 
-![png](LogisticRegression-LowBirthWeight-final_files/LogisticRegression-LowBirthWeight-final_75_0.png)
-
-
-
-    # print pca components based on k=2
+    * PCA components based on k=2*
     N=2
     pca = decomposition.PCA(n_components=N)
     x_PCA = pca.fit_transform(x)
@@ -1252,9 +1207,6 @@ reducing to 2 dimensions and plotted the explained variance ratios.
     bwt   -0.999965  0.008321
 
 
-
-    # really helpful blog:
-    # http://nbviewer.ipython.org/github/anfibil/cse40647.sp14/blob/master/8%20-%20Dimensionality%20Reduction.ipynb
     N = 2
     ind = np.arange(N)
     vals = pca.explained_variance_ratio_
@@ -1265,9 +1217,8 @@ reducing to 2 dimensions and plotted the explained variance ratios.
     ax = fig1.add_subplot(1,1,1)
     ax.bar(ind, pca.explained_variance_ratio_,
            color = ['DeepSkyBlue','DarkBlue'])
-           #color = ['Crimson','DeepPink','Coral','Gold','PeachPuff','Lavender','Aqua','DeepSkyBlue','DarkBlue','Maroon'])
-    ax.annotate(r"%.2f %%" % (vals[0]*100), (ind[0]+0.5, vals[0]), va="bottom", ha="center", fontsize=12)
-    ax.annotate(r"%.2f%%" % (vals[1]*100), (ind[1]+ 0.5, vals[1]), va="bottom", ha="center", fontsize=12)
+    ax.annotate(r"%.2f %%" % (vals[0]*100), (ind[0]+0.5, vals[0]),va="bottom", ha="center", fontsize=12)
+    ax.annotate(r"%.2f%%" % (vals[1]*100), (ind[1]+ 0.5, vals[1]),va="bottom", ha="center", fontsize=12)
     ax.set_xticklabels(labels = x_plot_labels, fontsize = 12)
     ax.set_ylim(0, 1.0)
     ax.set_xlim(-.5, 2.0)
@@ -1278,10 +1229,7 @@ reducing to 2 dimensions and plotted the explained variance ratios.
     ax.set_xlabel("Principal Component", fontsize=12)
     ax.set_ylabel("Variance \nExplained (%)", fontsize=12, rotation = 0, labelpad=40);
 
-
-![png](LogisticRegression-LowBirthWeight-final_files/LogisticRegression-LowBirthWeight-final_77_0.png)
-
-
+![](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/pca_var_3.png)
 
     # keep only 2 components with largest variances
     pca.n_components = 2
@@ -1295,16 +1243,17 @@ reducing to 2 dimensions and plotted the explained variance ratios.
         print(" + ".join("%.5f*%s" % (value, name)
                          for value, name in zip(component, x.columns)))
 
-    x shape before PCA: (124, 9) 
-    x shape after PCA: (124, 2)
+    x shape before PCA:  (124, 9) 
+    x shape after PCA:   (124, 2)
     PCA variance ratios: [ 0.99842715  0.00151656]
     
     Printing components in linear combination format:
     
-    -0.00106*age + -0.00830*lwt + 0.00025*race + 0.00014*smoke + 0.00011*ptl + 0.00001*ht + 0.00018*ui + -0.00005*ftv + -0.99996*bwt
+    -0.00106*age + -0.00830*lwt + 0.00025*race + 0.00014*smoke + 0.00011*ptl + 0.00001*ht 
+    + 0.00018*ui + -0.00005*ftv + -0.99996*bwt
     
-    -0.01781*age + -0.99979*lwt + 0.00511*race + -0.00005*smoke + 0.00193*ptl + -0.00304*ht + 0.00094*ui + 0.00010*ftv + 0.00832*bwt
-
+    -0.01781*age + -0.99979*lwt + 0.00511*race + -0.00005*smoke + 0.00193*ptl + -0.00304*ht 
+    + 0.00094*ui + 0.00010*ftv + 0.00832*bwt
 
 
     print('explained variance ratio: %s'
@@ -1312,10 +1261,8 @@ reducing to 2 dimensions and plotted the explained variance ratios.
     print('explained variance values: %s'
           % str(pca.explained_variance_))
 
-    explained variance ratio: [ 0.99842715  0.00151656]
-    explained variance values: [ 555318.21922504     843.49840762]
-
-
+    explained variance ratio:  [ 0.99842715      0.00151656]
+    explained variance values: [ 555318.21922504 843.49840762]
 
     # 1st scatter = plots datapoints in PCA 1
     # 2nd scatter = plots datapoints in PCA 2
@@ -1331,27 +1278,7 @@ reducing to 2 dimensions and plotted the explained variance ratios.
     ax.set_title(label = "Projection by PCA")
     pyplot.show(fig1)
 
-
-![png](LogisticRegression-LowBirthWeight-final_files/LogisticRegression-LowBirthWeight-final_80_0.png)
-
-
-
-    # Another way of doing the same thing as above
-    reds = y==0
-    blues = y==1
-    fig2 = pyplot.figure(figsize=(4,4))
-    ax = fig2.add_subplot(1,1,1)
-    ax.plot(x_reduced[reds, 0], x_reduced[reds, 1], "ro")
-    ax.plot(x_reduced[blues, 0], x_reduced[blues, 1], "bo")
-    pyplot.title("Projection by PCA")
-    pyplot.xlabel("1st principal component")
-    pyplot.ylabel("2nd component", rotation =0, labelpad=35)
-    pyplot.show(fig2)
-
-
-![png](LogisticRegression-LowBirthWeight-final_files/LogisticRegression-LowBirthWeight-final_81_0.png)
-
-
+![](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/pca_proj.png)
 
     # use whiten this time
     pca_2= PCA(n_components=2, whiten=True)
@@ -1364,36 +1291,33 @@ reducing to 2 dimensions and plotted the explained variance ratios.
     print("No longer correlated:",np.corrcoef(x_2.T)) # component samples no longer are correlated
 
     Pca explained variance ratio: [ 0.99842715  0.00151656]
-    Data is now centered: [-0.  0.]
-    Data is now standardized: [ 1.  1.]
-    No longer correlated: [[  1.00000000e+00  -4.61458828e-15]
-     [ -4.61458828e-15   1.00000000e+00]]
-
-
+    Data is now centered:         [-0.  0.]
+    Data is now standardized:     [ 1.  1.]
+    No longer correlated:         [[  1.000 -4.6145] [-4.614 1.000]]
 
     # Since the first component is so large - keep only one dimension
     pca_1= PCA(n_components=1)
     pca_1.fit(x)
     x_1 = pca_1.transform(x)
-    x_1_reconstructed = pca_1.inverse_transform(x_1) # x_reconstructed is now reconstructed x with fewer features
+    x_1_reconstructed = pca_1.inverse_transform(x_1) 
+
+    # x_reconstructed is now reconstructed x with fewer features
     print("Pca explained variance ratio:",pca_1.explained_variance_ratio_)
+    
     pyplot.scatter(x_1_reconstructed[:,0], x_1_reconstructed[:,1],c='b', s=35, alpha=0.9)
     X_n=(x - x.mean(axis=0))/x.std(axis=0) #normalize x
 
     Pca explained variance ratio: [ 0.99842715]
 
-
-
-![png](LogisticRegression-LowBirthWeight-final_files/LogisticRegression-LowBirthWeight-final_83_1.png)
-
-
-
     # since x_1_reconstructed is reconstructed x with fewer features
     # put into a data frame
-    x_1_reconstructed_v2 = pd.DataFrame(x_1_reconstructed, columns = ['age','lwt','race','smoke','ptl','ht','ui','ftv','bwt'] )
+    
+    x_1_reconstructed_v2 = pd.DataFrame(x_1_reconstructed, 
+    columns = ['age','lwt','race','smoke','ptl','ht','ui','ftv','bwt'] )
+    
     print(x_1_reconstructed_v2.head())
 
-             age         lwt      race     smoke       ptl        ht        ui  \
+             age         lwt      race     smoke       ptl        ht        ui  
     0  24.588512  137.069044  1.623209  0.278489  0.086492  0.057356  0.011774   
     1  24.402161  135.606185  1.667792  0.302951  0.106653  0.059098  0.044227   
     2  23.310078  127.033287  1.929063  0.446308  0.224800  0.069307  0.234414   
@@ -1408,35 +1332,19 @@ reducing to 2 dimensions and plotted the explained variance ratios.
     4  0.824467  3860.249767  
 
 
-
+    Last but not least, some more pretty graphs!
     from pandas.tools.plotting import andrews_curves
     pyplot.figure()
     andrews_curves(training, 'low')
 
+![](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/andrew.png)
 
-
-
-    <matplotlib.axes._subplots.AxesSubplot at 0x107ca2090>
-
-
-
-
-![png](LogisticRegression-LowBirthWeight-final_files/LogisticRegression-LowBirthWeight-final_85_1.png)
-
-
-
+    I found this and decided to try it as well, but havent had the time to really look deeply into it: 
     #http://pandas.pydata.org/pandas-docs/version/0.13.1/visualization.html
+    
     from pandas.tools.plotting import radviz
     pyplot.figure()
     radviz(training, 'low', colormap='winter')
 
 
-
-
-    <matplotlib.axes._subplots.AxesSubplot at 0x1095d6710>
-
-
-
-
-![png](LogisticRegression-LowBirthWeight-final_files/LogisticRegression-LowBirthWeight-final_86_1.png)
-
+![](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/radviz.png)
