@@ -1,10 +1,8 @@
 
 # Low Birth Weight data set - Logistic Regression and Visualization
 
-The goal of this Ipython notebook initially was to explore Logistic Regression,
-but it has become more about visually exploring the low birth weight dataset and
-implementing Logistic Regression by using L1 and L2 penalties. I also looked a
-bit at PCA and feature selection, while plotting a mix of different aspects such
+My initial goal was to implement Logistic Regression, but along the way I also did quite a bit of visual exploration and played around with L1 and L2 penalties when implementing Logistic Regression. 
+I also looked a bit at PCA and feature selection, while plotting a mix of different aspects such
 as coefficients and distributions of the data.
 
 
@@ -133,13 +131,12 @@ A quick look at what the data looks like:
     label = lbw[['low']]; #label to predict
     features = lbw.loc[:, 'age':'bwt']; #ignore id
 
-We split the data for training and testing using train-test-split from sklearn:
-66% is allocated to training and 34% for testing
+I split the data for training and testing using train-test-split from sklearn:
+66% is allocated to training and 34% for testing:
 
 
     # split data for training and testing: training = 66% and testing = 34%
     train, test, label_train, label_test =  train_test_split(features, label , test_size = .34, random_state =42)
-
 
     # turn train into dataframe (train_test_split returns array with no column names)
     train = pd.DataFrame(train, columns = ['age','lwt','race','smoke','ptl','ht','ui','ftv','bwt'] )
@@ -156,8 +153,6 @@ We split the data for training and testing using train-test-split from sklearn:
     2   26  154     3      0    1   1   0    1  2442
     3   19  138     1      1    0   0   0    2  2977
     4   16  170     2      0    0   0   0    4  3860
-
-
 
     # create training set with training data and label
     training = train.copy()
@@ -276,10 +271,10 @@ We split the data for training and testing using train-test-split from sklearn:
 
 ### Visually Exploring the data
 In order to explore the data, I used scatter-matrix from pandas to show the
-pairwise correlations between different variables.
+pairwise correlations between different variables. When doing so, I noticed there
+are way too many features in the dataset.
 
 
-    # exploring data correlations by using scatter matrix -- too many features
     from pandas.tools.plotting import scatter_matrix
     axeslist=scatter_matrix(x, alpha=0.5, figsize=(14, 12), diagonal="kde", density_kwds={'color':'red'}, 
                             c = training.low, cmap = cm.jet_r)
@@ -292,11 +287,11 @@ Using the training set as input with all the features doesn't add much value, so
 I reduced the input to another version of the training set with only age, lwt
 (weight in lbs of mother at last menstrual period), and bwt.
 
-LWT and AGE: the points seem to be mixed: many women between 15 and 35 are in
+*LWT and AGE:* the points seem to be mixed: many women between 15 and 35 are in
 the 100-200 lbs range with mixed outcomes of baby birth weights, and there seem
 to be a few outliers where weight is over 200 lbs.
 
-LWT and BWT (birth weight in grams - where bwt $<2500g$ is considered low):
+*LWT and BWT* (birth weight in grams - where bwt $<2500g$ is considered low):
 Since the data set contains fewer low birth weight samples it seems like there
 are more normal babies born to mothers where the weight in lbs at last menstrual
 period ranges from high to low. If we look at birth weight $<2500g$ in blue, it
@@ -321,27 +316,9 @@ looks like there are more women below 130 lbs.
 ![](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/modifiedMatrix.png)
 
 
-    # create 2 dataframes to check that colored correctly
-    red = training.loc[training.low ==0]
-    blue = training.loc[training.low ==1]
-
-
-    # some checks
-    red.loc[red.age>35.0]
-    red.age.max()
-    training.age.max()
-
-
-
-
-    45
-
-
-
 ### Further exploring features in the data
 Next, I created a few smaller dataframes to further explore the different
 features in the training data.
-
 #### Mother's weight at last period and birth weight of baby
 The first scatter plot shows mother's weight at last period and birth weight of
 baby: The red points represent normal weight babies and the blue points
@@ -364,16 +341,13 @@ there is no clear trend.
     ax.set_title('Weight at last menstrual period and birth weight in grams', fontsize = 'large')
     pyplot.show(fig)
 
-
-![png](LogisticRegression-LowBirthWeight-final_files/LogisticRegression-LowBirthWeight-final_19_0.png)
-
+![](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/simple_scatter.png)
 
 #### Race Birth weight race
 This next subset of the training data shows race and baby birth weight. Here we
 can see that there are fewer samples of black women and more white women. Also,
 women labeled as 'other' race seem to have about half low birth weight babies
 and half normal weight.
-
 
     # dataframe for race & bwt
     x_racebwt = x.loc[:, ['race','bwt']]
@@ -400,9 +374,7 @@ and half normal weight.
     ax.grid(True)
     pyplot.show(fig1)
 
-
-![png](LogisticRegression-LowBirthWeight-final_files/LogisticRegression-LowBirthWeight-final_21_0.png)
-
+![](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/race_plot1.png)
 
 #### Race, age and birth weight
 While noticing that there are fewer samples of black women and more white women,
@@ -415,9 +387,6 @@ contained black women.
     x_racebwt_2 =  x.loc[:, ['race','age','bwt']].replace([1,2,3],['white','black','other'])
     #x_racebwt.replace([1,2,3],['white','black','other'])
     x_racebwt_2.head()
-
-
-
 
 <div style="max-height:1000px;max-width:1500px;overflow:auto;">
 <table border="1" class="dataframe">
@@ -465,8 +434,6 @@ contained black women.
 </div>
 
 
-
-
     # check that correct replacements were made
     print("Check replacements made, first 4 should be false\n", x_racebwt_2.race.isin(["black"]).head(), 
           "\n\n",x_racebwt_2.loc[x_racebwt_2.race=="white"].head())
@@ -486,8 +453,6 @@ contained black women.
     6  white   20  3940
     7  white   24  4593
 
-
-
     # fewest black samples:
     total_count = x_racebwt_2.race.value_counts().sum()
     count_races = pd.DataFrame(x_racebwt_2.race.value_counts(), 
@@ -497,7 +462,7 @@ contained black women.
 
     Total count: 124 
     
-           race_count
+           *race_count*
     white          67
     other          43
     black          14
@@ -519,9 +484,7 @@ contained black women.
     black          14  0.112903
 
 
-
-![png](LogisticRegression-LowBirthWeight-final_files/LogisticRegression-LowBirthWeight-final_26_1.png)
-
+![](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/raceBar.png)
 
 When plotting each race separately, the minimum birth weight is the lowest for
 'other' race women seemingly close to $700g$ while the maximum is close to
@@ -539,10 +502,7 @@ between $1928g$ and $3860g$.
     fig.subplots_adjust(hspace=0.25, wspace=0.25)
     pyplot.show(fig)
 
-
-![png](LogisticRegression-LowBirthWeight-final_files/LogisticRegression-LowBirthWeight-final_28_0.png)
-
-
+![](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/compare_race1.png)
 
     # find min and max for black women
     print("min", min(x_racebwt_v2.bwt.loc[x_racebwt_v2.race=="black"]))
@@ -550,7 +510,6 @@ between $1928g$ and $3860g$.
 
     min 1928
     max 3860
-
 
 #### Smoke and birth weight
 In the next visualization, it looks like the training set has less women who
@@ -587,10 +546,7 @@ smoke and also more women who smoke and have low weight babies.
     ax.grid(True)
     pyplot.show(fig2)
 
-
-
-![png](LogisticRegression-LowBirthWeight-final_files/LogisticRegression-LowBirthWeight-final_31_0.png)
-
+![](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/smoke_yesno.png)
 
 #### History of Premature Birth and birth weight
 The data has fewest samples of women who have had 2 premature births and the
@@ -627,71 +583,18 @@ most samples of women with no previous history of premature births.
     pyplot.show(fig3)
 
 
-![png](LogisticRegression-LowBirthWeight-final_files/LogisticRegression-LowBirthWeight-final_33_0.png)
+![](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/prem.png)
 
 
 #### Frequency of age and birth weight
 
 
     x_racebwt_2.plot(kind='line', subplots=True, color='r')
-
-
-
-
     array([<matplotlib.axes._subplots.AxesSubplot object at 0x109c83f10>,
            <matplotlib.axes._subplots.AxesSubplot object at 0x1098d90d0>], dtype=object)
 
 
-
-
-![png](LogisticRegression-LowBirthWeight-final_files/LogisticRegression-LowBirthWeight-final_35_1.png)
-
-
-
-    x_racebwt_2.loc[x_racebwt_2.race==var, ['age','bwt']].head()
-
-
-
-
-<div style="max-height:1000px;max-width:1500px;overflow:auto;">
-<table border="1" class="dataframe">
-  <thead>
-    <tr style="text-align: right;">
-      <th></th>
-      <th>age</th>
-      <th>bwt</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <th>1 </th>
-      <td> 30</td>
-      <td> 3475</td>
-    </tr>
-    <tr>
-      <th>2 </th>
-      <td> 26</td>
-      <td> 2442</td>
-    </tr>
-    <tr>
-      <th>9 </th>
-      <td> 19</td>
-      <td> 2733</td>
-    </tr>
-    <tr>
-      <th>14</th>
-      <td> 28</td>
-      <td> 3969</td>
-    </tr>
-    <tr>
-      <th>18</th>
-      <td> 27</td>
-      <td> 1588</td>
-    </tr>
-  </tbody>
-</table>
-</div>
-
+![](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/freq.png)
 
 
 #### Interested in seeing subset of women who smoke and give birth to low weight
@@ -744,9 +647,7 @@ narrowest distribution of all.
     pyplot.show()
 
 
-![png](LogisticRegression-LowBirthWeight-final_files/LogisticRegression-LowBirthWeight-final_40_0.png)
-
-
+![](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/women_density.png)
 
     # density plot of birth weight by race - share x and y axes
     fig2, axes = pyplot.subplots(nrows=1, ncols=3, figsize=(14,4), sharex=True, sharey=True)
@@ -758,8 +659,7 @@ narrowest distribution of all.
     pyplot.tight_layout()
     pyplot.show()
 
-
-![png](LogisticRegression-LowBirthWeight-final_files/LogisticRegression-LowBirthWeight-final_41_0.png)
+![](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/women_density_2.png)
 
 
 ### Seaborn Package KDE plot function
@@ -806,8 +706,7 @@ weight babies.
     ax2.hlines(y=2500,xmin=0, xmax=55, color='r', lw=1, linestyle='--')
     sns.kdeplot(x_racebwt_2[['age','bwt']], ax=ax2, c= training.low, cmap = cm.cool);
 
-
-![png](LogisticRegression-LowBirthWeight-final_files/LogisticRegression-LowBirthWeight-final_43_0.png)
+![](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/kernerl.png)
 
 
 Also, when looking at the densities of all races, it becomes even more apparent
@@ -833,11 +732,9 @@ women have average baby weights below $3000g$.
     ax.set_title("Density plot of birth weight by race");
     ax.set_xlabel("Birth weight");
 
+![](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/weightrace_density.png)
 
-![png](LogisticRegression-LowBirthWeight-final_files/LogisticRegression-LowBirthWeight-final_45_0.png)
-
-
-#### Displot
+#### Distplot
 I also briefly explored the distplot function from the seaborn package which
 allows you to combine histograms and kernel density plots easily. The below
 shows the dist plot (histogram and a kernel density plot on top) of race and
@@ -858,8 +755,7 @@ birthweight.
                  ax = ax2);
     ax2.set_title("Race kernel density estimation and histogram");
 
-
-![png](LogisticRegression-LowBirthWeight-final_files/LogisticRegression-LowBirthWeight-final_47_0.png)
+![](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/distPlot.png)
 
 
 #### Jointplot
@@ -886,9 +782,7 @@ of each variable with a line for the mean of each variable in red.
     4  170     2  3860
 
 
-
-![png](LogisticRegression-LowBirthWeight-final_files/LogisticRegression-LowBirthWeight-final_49_1.png)
-
+![](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/joint.png)
 
 ###Logistic regression using $L_1$ penalty - yields spare coefficients.
 
