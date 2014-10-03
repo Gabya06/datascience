@@ -597,8 +597,7 @@ most samples of women with no previous history of premature births.
 ![](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/freq.png)
 
 
-#### Interested in seeing subset of women who smoke and give birth to low weight
-babies
+#### Interested in seeing subset of women who smoke and give birth to low weight babies
 
 
     # subset smoking ==1 and low birth weight ==1
@@ -891,7 +890,7 @@ corresponds to lwt and the others are nearly 0.
 Changing the regularization term C = 0.01: this yields coefficients very close
 to 0.
 
-    *L1: model for Logistic Regression  C = 0.01* 
+    #L1: model for Logistic Regression  C = 0.01# 
     l1_v2 = linear_model.LogisticRegression(penalty ='l1', C=.010, fit_intercept = True) 
     # fit l1_v2 model to data
     l1_v2.fit(x,y)
@@ -940,7 +939,7 @@ When setting C = 1000 the coefficient corresponding to history of premature
 labor (ptl) is highest.
 
 
-    *L2 model for Logistic Regression*
+    <em>L2 model for Logistic Regression</em>
     l2 = linear_model.LogisticRegression(penalty ='l2', C=1.0, fit_intercept = True) 
     # fit l2 model to data
     l2.fit(x,y)
@@ -995,7 +994,7 @@ labor (ptl) is highest.
 
 Changing C = 1000 for L2 penalty:
 
-    *L2: model for Logistic Regression - C = 1000*
+    <em>L2: model for Logistic Regression - C = 1000</em>
     l2_v2 = linear_model.LogisticRegression(penalty ='l2', C=1000) 
     # fit l1_v2 model to data
     l2_v2.fit(x,y)
@@ -1138,7 +1137,7 @@ reducing to 2 dimensions and plotted the explained variance ratios.
 ![](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/pca_var.png)
 
 
-    *PCA with 5 components*
+    <em>PCA with 5 components</em>
     N=5
     pca = decomposition.PCA(n_components=N)
     x_PCA = pca.fit_transform(x)
@@ -1167,7 +1166,7 @@ reducing to 2 dimensions and plotted the explained variance ratios.
     y_breaks = np.arange(0.00,1.25, step=0.25)
     x_plot_labels = ['1','2','3','4','5']
     
-    # plot of the 5 pca component percentages
+    # plot of the 5 PCA component percentages
     fig_pca5 = pyplot.figure(figsize=(6,4))
     ax = fig_pca5.add_subplot(1,1,1)
     ax.bar(ind, pca.explained_variance_ratio_,
@@ -1189,7 +1188,7 @@ reducing to 2 dimensions and plotted the explained variance ratios.
 
 ![](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/pca_var_2.png)
 
-    * PCA components based on k=2*
+    <em>PCA based on k = 2</em>
     N=2
     pca = decomposition.PCA(n_components=N)
     x_PCA = pca.fit_transform(x)
