@@ -1,5 +1,5 @@
 
-$# Logistic Regression and Visualization and the Low Birth Weight data set
+## Logistic Regression and Visualization and the Low Birth Weight data set
 
 My initial goal was to implement Logistic Regression, but along the way I also did quite a bit of visual exploration and played around with L1 and L2 penalties when implementing Logistic Regression. 
 I also looked a bit at PCA and feature selection, while plotting a mix of different aspects such
@@ -782,6 +782,7 @@ corresponds to lwt and the others are nearly 0.
 
 
 <em>L1 model for Logistic Regression</em>
+
     l1 = linear_model.LogisticRegression(penalty ='l1', C=1.0, fit_intercept = True) 
     # fit l1 model to data
     l1.fit(x,y)
@@ -872,10 +873,8 @@ corresponds to lwt and the others are nearly 0.
      1 0 0 0 0 0 0 0 0 1 0 0 0 0 0 0 0 0 0 0 1 1 1 0 0 0 1 0]
 
 
-<em>Changing the regularization term C = 0.01: this yields coefficients very close
-to 0.</em>
+#####L1: model for Logistic Regression  C = 0.01 (sparse coefficients)
 
-*L1: model for Logistic Regression  C = 0.01*
     l1_v2 = linear_model.LogisticRegression(penalty ='l1', C=.010, fit_intercept = True) 
     # fit l1_v2 model to data
     l1_v2.fit(x,y)
@@ -925,6 +924,7 @@ labor (ptl) is highest.
 
 
 <em> L2 model for Logistic Regression </em>
+
     l2 = linear_model.LogisticRegression(penalty ='l2', C=1.0, fit_intercept = True) 
     # fit l2 model to data
     l2.fit(x,y)
@@ -977,9 +977,9 @@ labor (ptl) is highest.
 
 ![](https://github.com/gabya06/datascience/blob/master/LogisticRegression/gaby_assets/coef_L2.png)
 
-<em>Changing C = 1000 for L2 penalty:</em>
 
-    <em>L2: model for Logistic Regression - C = 1000</em>
+#####L2: model for Logistic Regression - C = 1000
+
     l2_v2 = linear_model.LogisticRegression(penalty ='l2', C=1000) 
     # fit l1_v2 model to data
     l2_v2.fit(x,y)
@@ -1034,6 +1034,7 @@ accuracy, making 12 mistakes on the test set.
 
 
 *L2 model for Logistic Regression - for subset with only 2 features: race and smoke*
+
     logRegmodel = linear_model.LogisticRegression() 
     # fit l1 model to data
     logRegmodel.fit(x_race_train, x_race_train_labels)
@@ -1123,6 +1124,7 @@ reducing to 2 dimensions and plotted the explained variance ratios.
 
 
 <em>PCA with 5 components</em>
+
     N=5
     pca = decomposition.PCA(n_components=N)
     x_PCA = pca.fit_transform(x)
